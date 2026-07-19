@@ -1,5 +1,5 @@
 from __future__ import annotations
-from bst_node import BSTNode
+from BinarySearchTree.bst_node import BSTNode
 
 class BSTPrint:
     """Utility methods for creating a text representation of a binary search tree.

@@ -1,5 +1,5 @@
-from binary_search_tree import BinarySearchTree
-from bst_print import BSTPrint
+from BinarySearchTree.binary_search_tree import BinarySearchTree
+from BinarySearchTree.bst_print import BSTPrint
 
 def main():
     # The following values are inserted in this order to build the tree

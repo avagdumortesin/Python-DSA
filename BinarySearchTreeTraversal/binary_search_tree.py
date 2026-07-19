@@ -1,5 +1,6 @@
 from __future__ import annotations
-from BinarySearchTree.bst_node import BSTNode
+from BinarySearchTreeTraversal.bst_node import BSTNode
+from BinarySearchTreeTraversal.bst_node_visitor import BSTNodeVisitor
 
 class BinarySearchTree:
     """A binary search tree implementation.
@@ -30,9 +31,9 @@ class BinarySearchTree:
             The number of edges in the longest path from the root to a leaf.
             Returns -1 if the tree is empty.
         """
-        return self.get_height_helper(self.root)
+        return self._get_height(self.root)
 
-    def get_height_helper(self, node: BSTNode | None) -> int:
+    def _get_height(self, node: BSTNode | None) -> int:
         """Compute the height of a subtree.
 
         Args:
@@ -43,13 +44,45 @@ class BinarySearchTree:
         """
         if node is None:
             return -1
-        left_height = self.get_height_helper(node.left)
-        right_height = self.get_height_helper(node.right)
+        left_height = self._get_height(node.left)
+        right_height = self._get_height(node.right)
         return 1 + max(left_height, right_height)
 
     def get_root(self) -> BSTNode | None:
         """Return the root node of the tree."""
         return self.root
+
+    def in_order_traversal(self, visitor: BSTNodeVisitor) -> None:
+        """Perform an in-order traversal of the tree.
+
+        Args:
+            visitor: A visitor object implementing the `BSTNodeVisitor` interface.
+
+        Returns:
+            None.
+        """
+        self._in_order_traversal(self.root, visitor)
+
+    def _in_order_traversal(
+            self,
+            node: BSTNode | None,
+            visitor: BSTNodeVisitor
+    ) -> None:
+        """Recursively perform an in-order traversal starting at `node`.
+
+        Args:
+            node: The current node in the traversal.
+            visitor: The visitor object whose `visit()` method is invoked for
+                each node encountered during the traversal.
+
+        Returns:
+            None.
+        """
+        if node is None:
+            return
+        self._in_order_traversal(node.left, visitor)
+        visitor.visit(node)
+        self._in_order_traversal(node.right, visitor)
 
     def insert_key(self, key: int) -> bool:
         """Insert a new key into the tree if it does not already exist.
@@ -97,18 +130,6 @@ class BinarySearchTree:
                         current_node = None
                     else:
                         current_node = current_node.right
-
-    def print_in_order(self) -> None:
-        """Print the tree's keys using an in-order traversal."""
-        self.print_in_order_helper(self.root)
-
-    def print_in_order_helper(self, node: BSTNode | None) -> None:
-        """Recursively perform an in-order traversal starting at `node`."""
-        if node is None:
-            return
-        self.print_in_order_helper(node.left)
-        print(f"{node.key} ")
-        self.print_in_order_helper(node.right)
 
     def remove(self, key: int) -> bool:
         """ Remove a node with the specified key from the tree.
