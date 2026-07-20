@@ -1,40 +1,61 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+
+@dataclass
 class HuffmanTreeNode:
-    def __init__(self, left_child_node, right_child_node):
-        self.left_child = left_child_node
-        self.right_child = right_child_node
-        self.character = '\0'
+    """Represents a node in a Huffman encoding tree.
 
-        # Compute and assign frequency
-        frequency = 0
-        if left_child_node is not None:
-            frequency += left_child_node.get_frequency()
-        if right_child_node is not None:
-            frequency += right_child_node.get_frequency()
-        self.frequency = frequency
+    Leaf nodes contain a character and its frequency.
+    Internal nodes contain references to child nodes and store the combined
+    frequency of their children.
+    """
 
-    # Constructs a leaf node with the specified character and frequency
-    @staticmethod
-    def create_leaf(leaf_character, leaf_frequency):
-        new_node = HuffmanTreeNode(None, None)
-        new_node.character = leaf_character
-        new_node.frequency = leaf_frequency
-        return new_node
-    def get_character(self):
-        return self.character
+    left_child: HuffmanTreeNode | None
+    right_child: HuffmanTreeNode | None
+    character: str | None = None
+    frequency: int = 0
 
-    # Returns a reference to this node's left child, or None if this node is a leaf
-    def get_left_child(self):
-        return self.left_child
+    def __post_init__(self) -> None:
+        """Calculate the frequency for an internal node.
 
-    # Returns a reference to this node's right child, or None if this node is a leaf
-    def get_right_child(self):
-        return self.right_child
+        Leaf nodes provide their own frequency when created through
+        `create_leaf()`. Internal nodes calculate their frequency by summing
+        the frequencies of their children.
+        """
+        if self.character is None:
+            if self.left_child is not None:
+                self.frequency += self.left_child.frequency
+            if self.right_child is not None:
+                self.frequency += self.right_child.frequency
 
-    # Returns this node's frequency. If this node is a leaf, the frequency is
-    # the leaf node's character frequency. If this node is internal, the
-    # frequency is the sum of both child frequencies.
-    def get_frequency(self):
-        return self.frequency
+    @classmethod
+    def create_leaf(cls, leaf_character: str, leaf_frequency: int) -> HuffmanTreeNode:
+        """Create a leaf node containing a character and frequency.
 
-    def __lt__(self, other):
+        Args:
+            leaf_character: The character stored in the leaf.
+            leaf_frequency: The number of occurrences of the character.
+
+        Returns:
+            A HuffmanTreeNode representing a leaf.
+        """
+        return cls(
+            None,
+            None,
+            character=leaf_character,
+            frequency=leaf_frequency
+        )
+
+    def is_leaf(self) -> bool:
+        """Determine whether this node is a leaf node.
+
+        Returns:
+            True if this node has no children; otherwise, False.
+        """
+        return self.left_child is None and self.right_child is None
+
+    def __lt__(self, other: HuffmanTreeNode) -> bool:
+        """Compare nodes by frequency for priority queue ordering."""
         return self.frequency < other.frequency
