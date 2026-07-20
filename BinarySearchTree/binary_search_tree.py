@@ -30,9 +30,9 @@ class BinarySearchTree:
             The number of edges in the longest path from the root to a leaf.
             Returns -1 if the tree is empty.
         """
-        return self.get_height_helper(self.root)
+        return self._get_height(self.root)
 
-    def get_height_helper(self, node: BSTNode | None) -> int:
+    def _get_height(self, node: BSTNode | None) -> int:
         """Compute the height of a subtree.
 
         Args:
@@ -43,8 +43,8 @@ class BinarySearchTree:
         """
         if node is None:
             return -1
-        left_height = self.get_height_helper(node.left)
-        right_height = self.get_height_helper(node.right)
+        left_height = self._get_height(node.left)
+        right_height = self._get_height(node.right)
         return 1 + max(left_height, right_height)
 
     def get_root(self) -> BSTNode | None:
@@ -110,8 +110,8 @@ class BinarySearchTree:
         print(f"{node.key} ")
         self.print_in_order_helper(node.right)
 
-    def remove(self, key: int) -> bool:
-        """ Remove a node with the specified key from the tree.
+    def remove_key(self, key: int) -> bool:
+        """Remove a node with the specified key from the tree.
 
         Args:
             key: The key of the node to remove.
@@ -119,65 +119,49 @@ class BinarySearchTree:
         Returns:
             True if a node was found and removed; otherwise, False.
         """
-        parent: BSTNode | None = None
-        current_node: BSTNode | None = self.root
-        # Search for the node to remove
-        while current_node is not None:
-            # Check if current_node has a matching key
-            if current_node.key == key:
-                if current_node.left is None and current_node.right is None:
-                    # Remove leaf
-                    if parent is None:  # Node is root
-                        self.root = None
-                    elif parent.left is current_node:
-                        parent.left = None
-                    else:
-                        parent.right = None
-                    return True  # Node found and removed
-                elif current_node.left is not None and current_node.right is None:
-                    # Remove node with only left child
-                    if parent is None: # Node is root
-                        self.root = current_node.left
-                    elif parent.left is current_node:
-                        parent.left = current_node.left
-                    else:
-                        parent.right = current_node.left
-                    return True  # Node found and removed
-                elif current_node.left is None and current_node.right is not None:
-                    # Remove node with only right child
-                    if parent is None:  # Node is root
-                        self.root = current_node.right
-                    elif parent.left is current_node:
-                        parent.left = current_node.right
-                    else:
-                        parent.right = current_node.right
-                    return True  # Node found and removed
-                else:
-                    # Remove node with two children
+        node = self.search(key)
+        if node is not None:
+            self.remove_node(node)
+            return True
+        return False
 
-                    # Find successor (leftmost child of right subtree)
-                    successor = current_node.right
-                    while successor.left is not None:
-                        successor = successor.left
+    def remove_node(self, node: BSTNode) -> None:
+        """Remove the specified node from the tree.
 
-                    # Copy successor's key to current node
-                    current_node.key = successor.key
+        Args:
+            node: The BSTNode to remove.
 
-                    # Reassign parent, current_node, and key so that loop
-                    # continues searching for the successor node, which
-                    # now contains the duplicate key created above
-                    parent = current_node
-                    current_node = current_node.right
-                    key = successor.key
-            elif key < current_node.key:
-                # Search left
-                parent = current_node
-                current_node = current_node.left
+        Returns:
+            None.
+        """
+        # Case 1: Internal node with 2 children
+        if node.left is not None and node.right is not None:
+            # Find the in-order successor (leftmost node in the right subtree)
+            successor = node.right
+            while successor.left is not None:
+                successor = successor.left
+            # Replace the node's key with the successor's key
+            node.key = successor.key
+            # Recursively remove successor
+            self.remove_node(successor)
+
+        # Case 2: Root node (with 1 or 0 children)
+        elif node is self.root:
+            if node.left is not None:
+                self.root = node.left
             else:
-                # Search right
-                parent = current_node
-                current_node = current_node.right
-        return False  # Node not found
+                self.root = node.right
+            # The new root, if not None, must have parent assigned with None
+            if self.root is not None:
+                self.root.parent = None
+
+        # Case 3: Internal with left child only
+        elif node.left is not None:
+            node.parent.replace_child(node, node.left)
+
+        # Case 4: Internal node with only a right child, or a leaf node
+        else:
+            node.parent.replace_child(node, node.right)
 
     def search(self, search_key: int) -> BSTNode | None:
         """Search the tree for a node with the specified key.
