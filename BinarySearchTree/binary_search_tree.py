@@ -163,21 +163,38 @@ class BinarySearchTree:
         else:
             node.parent.replace_child(node, node.right)
 
-    def search(self, search_key: int) -> BSTNode | None:
+    def search(self, key: int) -> BSTNode | None:
         """Search the tree for a node with the specified key.
-
         Args:
-            search_key: The key value to locate.
+            key: The key value to locate
 
         Returns:
             The BSTNode containing the key if found; otherwise, None.
         """
-        current_node = self.root
-        while current_node is not None:
-            if current_node.key == search_key:
-                return current_node
-            elif search_key < current_node.key:
-                current_node = current_node.left
-            else:
-                current_node = current_node.right
-        return None
+        return self._search_recursive(self.root, key)
+
+    def _search_recursive(
+            self,
+            node: BSTNode | None,
+            key: int
+    ) -> BSTNode | None:
+        """Recursively search the subtree rooted at `node` for `key`.
+
+        Args:
+            node: The root of the subtree to search.
+            key: The key value to locate.
+
+        Returns:
+            The matching BSTNode if found; otherwise, None.
+        """
+        if node is None:
+            return None
+
+        if key == node.key:
+            return node
+
+        if key < node.key:
+            return self._search_recursive(node.left, key)
+
+        return self._search_recursive(node.right, key)
+    
