@@ -165,8 +165,9 @@ class BinarySearchTree:
 
     def search(self, key: int) -> BSTNode | None:
         """Search the tree for a node with the specified key.
+
         Args:
-            key: The key value to locate
+            key: The key value to locate.
 
         Returns:
             The BSTNode containing the key if found; otherwise, None.
@@ -197,4 +198,3 @@ class BinarySearchTree:
             return self._search_recursive(node.left, key)
 
         return self._search_recursive(node.right, key)
-    
