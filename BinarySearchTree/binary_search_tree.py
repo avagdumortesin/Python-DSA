@@ -39,8 +39,8 @@ class BinarySearchTree:
             node: The root node of the subtree.
 
         Returns:
-            The height of the subtree that is rooted at `node`, or -1 if `node`
-            is None.
+            The height of the subtree that is rooted at `node`, or
+            -1 if `node` is None.
         """
         if node is None:
             return -1

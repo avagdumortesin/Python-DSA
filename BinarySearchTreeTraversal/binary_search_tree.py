@@ -3,7 +3,7 @@ from BinarySearchTreeTraversal.bst_node import BSTNode
 from BinarySearchTreeTraversal.bst_node_visitor import BSTNodeVisitor
 
 class BinarySearchTree:
-    """A binary search tree implementation.
+    """A binary search tree implementation with traversal.
 
     Supports insertion, searching, and removal of nodes while
     maintaining the binary search tree ordering property.
@@ -48,10 +48,6 @@ class BinarySearchTree:
         right_height = self._get_height(node.right)
         return 1 + max(left_height, right_height)
 
-    def get_root(self) -> BSTNode | None:
-        """Return the root node of the tree."""
-        return self.root
-
     def in_order_traversal(self, visitor: BSTNodeVisitor) -> None:
         """Perform an in-order traversal of the tree.
 
@@ -94,9 +90,8 @@ class BinarySearchTree:
             True if the key was inserted; False if the key already exists.
         """
         if self.contains(key):
-            # Duplicate keys are not allowed
             return False
-        # Create and insert a new node and return True
+
         self.insert_node(BSTNode(key))
         return True
 
@@ -112,28 +107,24 @@ class BinarySearchTree:
         # Check if tree is empty
         if self.root is None:
             self.root = new_node
-            new_node.parent = None
             return
+
         current_node = self.root
-        while current_node is not None:
+        while True:
             if new_node.key < current_node.key:
-                # If no left child exists, add the new node here, otherwise
-                # repeat from the left child.
+                # Insert here if the left child is empty.
                 if current_node.left is None:
                     current_node.left = new_node
                     new_node.parent = current_node
                     return
-                else:
-                    current_node = current_node.left
+                current_node = current_node.left
             else:
-                # If no right child exists, add the new node here, otherwise
-                # repeat from the right child.
+                # Insert here if the right child is empty.
                 if current_node.right is None:
                     current_node.right = new_node
                     new_node.parent = current_node
                     return
-                else:
-                    current_node = current_node.right
+                current_node = current_node.right
 
     def remove_key(self, key: int) -> bool:
         """Remove a node with the specified key from the tree.
@@ -146,47 +137,44 @@ class BinarySearchTree:
         """
         node = self.search(key)
         if node is not None:
-            self.remove_node(node)
+            self._remove_node(node)
             return True
         return False
 
-    def remove_node(self, node: BSTNode) -> None:
+    def _remove_node(self, node: BSTNode) -> None:
         """Remove the specified node from the tree.
 
         Args:
             node: The BSTNode to remove.
-
-        Returns:
-            None.
         """
         # Case 1: Internal node with 2 children
         if node.left is not None and node.right is not None:
             # Find the in-order successor (leftmost node in the right subtree)
             successor = node.right
+
             while successor.left is not None:
                 successor = successor.left
+
             # Replace the node's key with the successor's key
             node.key = successor.key
             # Recursively remove successor
-            self.remove_node(successor)
+            self._remove_node(successor)
+            return
 
         # Case 2: Root node (with 1 or 0 children)
-        elif node is self.root:
-            if node.left is not None:
-                self.root = node.left
-            else:
-                self.root = node.right
+        if node is self.root:
+            self.root = node.left if node.left is not None else node.right
+
             # The new root, if not None, must have parent assigned with None
             if self.root is not None:
                 self.root.parent = None
 
-        # Case 3: Internal with left child only
-        elif node.left is not None:
-            node.parent.replace_child(node, node.left)
+            return
 
-        # Case 4: Internal node with only a right child, or a leaf node
-        else:
-            node.parent.replace_child(node, node.right)
+        # Case 3: Internal node with left child only, right child only, or a leaf node
+        assert node.parent is not None
+        replacement = node.left if node.left is not None else node.right
+        node.parent.replace_child(node, replacement)
 
     def search(self, key: int) -> BSTNode | None:
         """Search the tree for a node with the specified key.
