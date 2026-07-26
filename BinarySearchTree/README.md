@@ -29,17 +29,52 @@ The implementation supports insertion, searching, deletion, height calculation, 
 └── README.md
 ```
 
-## Example Output
+## Running the Example
+
+Run the demonstration from the project directory:
+
+``` bash
+python main.py
+```
+
+Example Output:
 
 ``` text
 Initial tree:
-<ASCII tree output>
+      [3]
+     /   \
+   [2]   [10]
+  /     /
+[1]   [7]
+     /   \
+   [4]   [8]
+      \     \
+      [5]   [9]
+         \
+         [6]
 
 Tree after removing 5:
-<updated tree>
+      [3]
+     /   \
+   [2]   [10]
+  /     /
+[1]   [7]
+     /   \
+   [4]   [8]
+      \     \
+      [6]   [9]
 
 Tree after removing 3:
-<updated tree>
+      [4]
+     /   \
+   [2]   [10]
+  /     /
+[1]   [7]
+     /   \
+   [6]   [8]
+            \
+            [9]
+
 ```
 
 ## Concepts Demonstrated
@@ -55,8 +90,6 @@ Tree after removing 3:
 
 ## Improvements over the Textbook Implementation
 
-Compared to the original ZyBooks implementation, this project includes:
-
 -   Modern Python type annotations throughout
 -   Comprehensive module, class, and method docstrings
 -   PEP 8 naming conventions
@@ -67,16 +100,6 @@ Compared to the original ZyBooks implementation, this project includes:
 -   Better encapsulation through helper methods
 -   Stronger `None` handling with optional types
 -   More maintainable ASCII tree-printing utilities
-
-## Running the Project
-
-From the project directory:
-
-``` bash
-python main.py
-```
-
-Python 3.11 or newer is recommended.
 
 ## Acknowledgements
 

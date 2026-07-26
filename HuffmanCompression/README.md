@@ -28,22 +28,26 @@ Huffman coding is a lossless compression algorithm that assigns shorter binary c
 └── README.md
 ```
 
-## Example Usage
+## Running the Example
 
-``` python
-from huffman import Huffman
+Run the demonstration from the project directory:
 
-message = "the quick brown fox jumps over the lazy dog"
+``` bash
+python main.py
+```
 
-compressed = Huffman.compress(message)
+Example output:
 
-if compressed is not None:
-    restored = Huffman.decompress(
-        compressed.compressed,
-        compressed.root
-    )
+``` text
+Huffman compression demonstration:
+Original message:   the quick brown fox jumps over the lazy dog
+Compressed data:    100011011101000111010100110111110110011001100111110111100101100001101000010111001010110100011111001011101100101111110001011101110101111000100011011101000011010110011100111100000110001010110101
+Restored message:   the quick brown fox jumps over the lazy dog
 
-    print(restored)
+Original size:      344 bits
+Compressed size:    192 bits
+Space reduction:    44.19%
+Successful restore: True
 ```
 
 ## Concepts Demonstrated
@@ -60,32 +64,18 @@ if compressed is not None:
 
 ## Improvements over the Textbook Implementation
 
-Compared to the original ZyBooks implementation, this project includes:
-
 -   Modern Python type annotations throughout
--   Dataclass implementations for tree nodes and compressed data
-    containers
--   Replacement of `queue.PriorityQueue` with the lighter-weight `heapq`
-    module
--   Use of `collections.Counter` for concise frequency table
-    construction
--   Removal of Java-style getter methods in favor of direct attribute
-    access
+-   Dataclass implementations for tree nodes and compressed data containers
+-   Replacement of `queue.PriorityQueue` with the lighter-weight `heapq` module
+-   Use of `collections.Counter` for concise frequency table construction
+-   Removal of Java-style getter methods in favor of direct attribute access
 -   Private helper methods for internal implementation details
 -   An `is_leaf()` helper to simplify traversal logic
 -   Comprehensive docstrings for modules, classes, and methods
 -   More descriptive variable and method names
--   Handling of the single-character edge case during compression and
-    decompression
+-   Handling of the single-character edge case during compression and decompression
 -   Cleaner string construction using `str.join()`
 -   Assertions to document internal invariants
-
-## Running the Project
-
-Import the `Huffman` class into your own application and use the static
-`compress()` and `decompress()` methods.
-
-Python 3.11 or newer is recommended.
 
 ## Acknowledgements
 
@@ -93,6 +83,4 @@ This project is based on the Huffman coding algorithms presented in:
 
 > Lysecky, R., & Vahid, F. (2018, June). *C950: Data Structures and Algorithms II*. zyBooks.
 
-The implementation has been refactored and modernized for readability,
-maintainability, and current Python best practices while preserving the
-original algorithms.
+The implementation has been refactored and modernized for readability, maintainability, and current Python best practices while preserving the original algorithms.

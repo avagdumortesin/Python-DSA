@@ -1,7 +1,7 @@
 from trie import Trie
 
 
-insertions = [ "CAT", "DOG", "BIRD", "FISH", "HAMSTER", "SNAKE" ]
+insertions = ["CAT", "DOG", "BIRD", "FISH", "HAMSTER", "SNAKE"]
 searches = [
     "CAT", "BAT", "RAT", "HIPPOPOTAMUS", "HAMSTER", "FERRET", "OCTOPUS"
 ]

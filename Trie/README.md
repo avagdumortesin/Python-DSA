@@ -29,7 +29,17 @@ A trie stores strings one character at a time along shared paths. This structure
 └── README.md
 ```
 
-## Example Output
+## Running the Project
+
+Run the demonstration from the project directory:
+
+```bash
+python main.py
+```
+
+Python 3.12 or newer is required because the implementation uses the modern `type` statement for the `SearchResult` alias.
+
+Example Output:
 
 ```text
 Inserting "CAT"
@@ -64,8 +74,6 @@ The node count includes the terminal-marker node for successful searches but doe
 
 ## Improvements over the Textbook Implementation
 
-Compared with the original ZyBooks implementation, this project includes:
-
 - Modern Python type annotations throughout
 - A named `SearchResult` type alias for search return values
 - Forward-reference support through `from __future__ import annotations`
@@ -78,16 +86,6 @@ Compared with the original ZyBooks implementation, this project includes:
 - A private `_remove_recursive()` helper to distinguish internal implementation details from the public API
 - Safer branch pruning that removes a child only when the requested string was successfully removed and the child has no remaining descendants
 - Explicit return types for insertion, lookup, removal, and node-management operations
-
-## Running the Project
-
-From the project directory, run:
-
-```bash
-python main.py
-```
-
-Python 3.12 or newer is required because the implementation uses the modern `type` statement for the `SearchResult` alias.
 
 ## Acknowledgements
 

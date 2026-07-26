@@ -35,11 +35,18 @@ Rather than embedding traversal behavior directly into the tree, the project del
 └── README.md
 ```
 
-## Example Output
+## Running the Example
+
+Run the demonstration from the project directory:
+
+``` bash
+python main.py
+```
+
+Example Output
 
 ``` text
-12 19 23 25 26 44 54 67 73 76 81 83 88
-PrintVisitor is done visiting nodes.
+12 19 23 25 26 44 54 67 73 76 81 83 88 PrintVisitor is done visiting nodes.
 
 CountVisitor visited 13 nodes.
 
@@ -59,8 +66,6 @@ ListVisitor visited 13 nodes: 12 19 23 25 26 44 54 67 73 76 81 83 88
 
 ## Improvements over the Textbook Implementation
 
-Compared to the original ZyBooks implementation, this project includes:
-
 -   Modern Python type annotations throughout
 -   A `main()` entry point guarded by `if __name__ == "__main__":`
 -   Descriptive module, class, and method docstrings
@@ -71,16 +76,6 @@ Compared to the original ZyBooks implementation, this project includes:
 -   Improved helper method naming using private methods
 -   Cleaner project organization using snake_case module names
 -   Consistent formatting and readability improvements
-
-## Running the Project
-
-From the project directory:
-
-``` bash
-python main.py
-```
-
-Python 3.11 or newer is recommended.
 
 ## Acknowledgements
 

@@ -1,17 +1,17 @@
-# Breadth-First Search (BFS)
+# Depth-First Search (DFS)
 
 ## Overview
 
-This project demonstrates an iterative implementation of the **Breadth-First Search (BFS)** graph traversal algorithm in Python. The implementation is based on the BFS example presented in the WGU zyBooks *Data Structures and Algorithms II* textbook, but has been refactored into a modern, type-safe, object-oriented Python implementation.
+This project demonstrates an iterative implementation of the **Depth-First Search (DFS)** graph traversal algorithm in Python. The implementation is based on the DFS example presented in the WGU zyBooks *Data Structures and Algorithms II* course but has been refactored using modern Python features while preserving the original traversal algorithm.
 
-Breadth-first search explores a graph level by level, visiting all neighboring vertices before proceeding to the next depth. This implementation uses a queue to manage traversal order and employs the Visitor design pattern to separate traversal logic from vertex processing.
+Depth-first search explores a graph by following each branch as deeply as possible before backtracking. This implementation uses an explicit stack rather than recursion and employs the Visitor design pattern to separate traversal logic from vertex processing.
 
 ## Features
 
-- Iterative breadth-first traversal using a queue
+- Iterative depth-first traversal using an explicit stack
 - Support for directed and undirected graphs
 - Visitor pattern for customizable vertex processing
-- Dataclass-based graph components with `slots=True`
+- Dataclass-based graph components
 - Fully type-annotated implementation
 - Comprehensive documentation through module, class, and method docstrings
 - Demonstration using three sample graphs
@@ -20,7 +20,7 @@ Breadth-first search explores a graph level by level, visiting all neighboring v
 
 ```text
 .
-├── bfs_visitors.py
+├── dfs_visitors.py
 ├── graph.py
 ├── graph_components.py
 ├── main.py
@@ -38,21 +38,16 @@ python main.py
 Example output:
 
 ```text
-Breadth-first search traversal
-Start vertex: Eva
-Eva: 0
-Joe: 1
-Lily: 1
-Taj: 2
-Jun: 2
-Chen: 3
-Ken: 3
+Depth-first search traversal
+Graph 1: A D B F E C
+Graph 2: A B C F E D
+Graph 3: A E F D C B
 ```
 
 ## Concepts Demonstrated
 
-- Breadth-First Search (BFS)
-- Graph traversal using a queue
+- Depth-First Search (DFS)
+- Graph traversal using a stack
 - Directed and undirected graph representations
 - Visitor design pattern
 - Object-oriented design
@@ -77,7 +72,7 @@ Ken: 3
 
 ## Acknowledgements
 
-This project is based on the breadth-first search algorithms presented in:
+This project is based on the depth-first search algorithms presented in:
 
 > Lysecky, R., & Vahid, F. (2018, June). *C950: Data Structures and Algorithms II*. zyBooks.
 

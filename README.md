@@ -1,25 +1,44 @@
 # Python Data Structures and Algorithms
 
-This repository contains Python implementations of common data structures and algorithms created as part of my ongoing study of computer science fundamentals and software development practices.
+This repository contains modern Python implementations of common data structures and algorithms developed while studying computer science fundamentals. Many of the implementations began as textbook exercises and have been refactored to emphasize readability, maintainability, static type safety, and current Python best practices while preserving the underlying algorithms.
 
 ## Organization
 
-Each folder contains an implementation of a specific data structure or algorithm, along with a README describing:
+Each subdirectory contains a self-contained implementation of a specific data structure or algorithm, including:
 
-- The purpose and concepts behind the implementation
-- Design decisions and implementation notes
-- The learning resource that inspired the work (when applicable)
+- An overview of the data structure or algorithm
+- Features and concepts demonstrated
+- Notes describing improvements over the original educational implementation
+- A runnable example program
+- Documentation and implementation details
 
 ## Implementations
 
 Current implementations include:
 
-- Binary Search Trees
-- Tree traversals
-- Sorting algorithms
-- Searching algorithms
-- Additional data structures and algorithms as they are completed
+### Trees
+
+- Binary Search Tree
+- Binary Search Tree Traversal (Visitor Pattern)
+- AVL Tree
+- Red-Black Tree
+- Trie
+- Huffman Coding
+
+### Graphs
+
+- Breadth-First Search (BFS)
+
+### Additional algorithms
+
+Additional data structures and algorithms will be added as they are completed.
 
 ## Goals
 
-The purpose of this repository is to strengthen my understanding of fundamental data structures and algorithms through hands-on implementation, while practicing Python development techniques including type hints, documentation, testing, and clean code organization.
+This repository serves as both a learning resource and a programming portfolio. Its goals are to:
+
+- Strengthen understanding of fundamental data structures and algorithms
+- Practice writing clean, maintainable Python code
+- Apply modern Python features such as type annotations, dataclasses, protocols, and enums where appropriate
+- Demonstrate object-oriented design principles and common design patterns
+- Build a collection of well-documented, runnable reference implementations

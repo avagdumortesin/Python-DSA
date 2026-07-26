@@ -2,14 +2,13 @@
 
 ## Overview
 
-This repository contains a modern Python implementation of a **Red-Black Tree (RBT)**. While the underlying algorithms follow the implementation presented in the ZyBooks *Data Structures and Algorithms II* textbook, the code has been refactored to emphasize readability, maintainability, static type safety, and current Python best practices.
+This project demonstrates a Python implementation of a **Red-Black Tree**, a self-balancing binary search tree that maintains logarithmic-time insertion, deletion, and lookup operations through a series of color and rotation rules. While the underlying algorithms follow the implementation presented in the WGU zyBooks *Data Structures and Algorithms II* textbook, the code has been refactored to emphasize readability, maintainability, static type safety, and current Python best practices.
 
-A red-black tree is a self-balancing binary search tree that uses node colors and structural rules to maintain logarithmic height during insertion and deletion.
+Red-Black Trees automatically maintain balance after insertions and deletions by enforcing a set of structural properties. These rules ensure that no path through the tree becomes significantly longer than another, providing efficient performance without requiring complete rebalancing after every modification.
 
 ## Features
 
-- Red-black tree insertion with automatic balancing
-- Red-black tree deletion with automatic rebalancing
+- Red-black tree insertion and deletion with automatic rebalancing
 - Left and right tree rotations
 - Recursive search
 - Tree height and node count operations
@@ -22,16 +21,15 @@ A red-black tree is a self-balancing binary search tree that uses node colors an
 
 ```text
 .
-├── main.py              # Demonstration program
-├── rbt_node.py          # Red-black tree node implementation
-├── rbt_print.py         # ASCII tree visualization
-├── red_black_tree.py    # Red-black tree implementation
+├── red_black_tree.py
+├── rb_tree_node.py
+├── main.py
 └── README.md
 ```
 
 ## Running the Example
 
-From the project directory:
+Run the demonstration from the project directory:
 
 ```bash
 python main.py
@@ -45,23 +43,55 @@ The demonstration program:
 4. Removes several keys while maintaining the red-black tree properties.
 5. Displays the tree after each successful removal.
 
-Python 3.11 or newer is recommended.
+Example output:
+
+```text
+Tree after initial insertions:
+                ____[15 B]_____
+               /               \
+          [10 R]               [20 R]
+         /      \             /      \
+     [5 B]      [12 B]   [19 B]      [22 B]
+    /                   /                  \
+[3 R]              [18 R]                  [47 R]
+
+
+Tree after removing 12:
+          ____[15 B]_____
+         /               \
+     [5 R]               [20 R]
+    /     \             /      \
+[3 B]     [10 B]   [19 B]      [22 B]
+                  /                  \
+             [18 R]                  [47 R]
+
+Tree after removing 20:
+          ____[15 B]_____
+         /               \
+     [5 R]               [22 R]
+    /     \             /      \
+[3 B]     [10 B]   [19 B]      [47 B]
+                  /
+             [18 R]
+
+Failed to remove key 30 (not found)
+```
+
+> **Note:** The exact output depends on the demonstration sequence used in `main.py`, but it illustrates the tree maintaining Red-Black properties throughout insertions and deletions.
 
 ## Concepts Demonstrated
-- Red-black trees
+
+- Red-Black Trees
 - Self-balancing binary search trees
 - Tree rotations
-- Node-color invariants
-- Binary search tree insertion
-- Binary search tree deletion
+- Tree recoloring
+- Binary search tree insertion and deletion
 - Recursive algorithms
 - Object-oriented programming
 - Enumerations
-- Static type annotations
+- Type annotations and modern Python development practices
 
 ## Improvements over the Textbook Implementation
-
-Compared to the original ZyBooks implementation, this version includes:
 
 - Modern Python type annotations throughout
 - Google-style docstrings
@@ -76,7 +106,7 @@ Compared to the original ZyBooks implementation, this version includes:
 
 ## Acknowledgements
 
-This project is based on the red-black tree algorithms presented in:
+This project is based on the Red-Black Tree algorithms presented in:
 
 > Lysecky, R., & Vahid, F. (2018, June). *C950: Data Structures and Algorithms II*. zyBooks.
 
