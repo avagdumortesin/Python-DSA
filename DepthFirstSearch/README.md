@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates an iterative implementation of the **Depth-First Search (DFS)** graph traversal algorithm in Python. The implementation is based on the DFS example presented in the WGU zyBooks *Data Structures and Algorithms II* course but has been refactored using modern Python features while preserving the original traversal algorithm.
+This project demonstrates an iterative implementation of the **Depth-First Search (DFS)** graph traversal algorithm in Python. The implementation is based on the DFS example presented in the WGU zyBooks *Data Structures and Algorithms II* textbook but has been refactored using modern Python features while preserving the original traversal algorithm.
 
 Depth-first search explores a graph by following each branch as deeply as possible before backtracking. This implementation uses an explicit stack rather than recursion and employs the Visitor design pattern to separate traversal logic from vertex processing.
 
@@ -74,6 +74,7 @@ Graph 3: A E F D C B
 
 This project is based on the depth-first search algorithms presented in:
 
-> Lysecky, R., & Vahid, F. (2018, June). *C950: Data Structures and Algorithms II*. zyBooks.
+> Lysecky, R., & Vahid, F. (2018, June). *C950: Data Structures and Algorithms
+II*. zyBooks.
 
 The implementation has been refactored and modernized for readability, maintainability, and current Python best practices while preserving the original algorithm.
