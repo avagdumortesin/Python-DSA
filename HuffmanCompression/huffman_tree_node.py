@@ -41,12 +41,7 @@ class HuffmanTreeNode:
         Returns:
             A HuffmanTreeNode representing a leaf.
         """
-        return cls(
-            None,
-            None,
-            character=leaf_character,
-            frequency=leaf_frequency
-        )
+        return cls(None, None, character=leaf_character, frequency=leaf_frequency)
 
     def is_leaf(self) -> bool:
         """Determine whether this node is a leaf node.

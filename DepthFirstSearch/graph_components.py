@@ -1,4 +1,5 @@
 """Graph component classes used by the depth-first search implementation."""
+
 from dataclasses import dataclass
 
 

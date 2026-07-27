@@ -12,6 +12,7 @@ class Trie:
     A trie stores strings character-by-character, allowing efficient prefix-based
     search operations.
     """
+
     def __init__(self) -> None:
         """Initialize an empty trie."""
         self.root: TrieNode = TrieNode()
@@ -70,10 +71,7 @@ class Trie:
         return self._remove_recursive(self.root, text_string, 0)
 
     def _remove_recursive(
-            self,
-            node: TrieNode,
-            text_string: str,
-            char_index: int
+        self, node: TrieNode, text_string: str, char_index: int
     ) -> bool:
         """Recursively remove a string from the trie.
 
@@ -89,7 +87,7 @@ class Trie:
             if node.get_child(_TERMINAL_MARKER) is not None:
                 node.remove_child(_TERMINAL_MARKER)
                 return True
-            return False # text_string not found
+            return False  # text_string not found
 
         character = text_string[char_index]
         child = node.get_child(character)

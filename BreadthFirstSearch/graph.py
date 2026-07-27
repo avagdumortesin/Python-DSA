@@ -74,11 +74,7 @@ class Graph:
 
     def get_edges(self) -> set[Edge]:
         """Return all distinct edges in the graph."""
-        return {
-            edge
-            for edges in self.from_edges.values()
-            for edge in edges
-        }
+        return {edge for edges in self.from_edges.values() for edge in edges}
 
     def get_edges_list(self) -> list[Edge]:
         """Return all distinct edges as a list."""
@@ -112,7 +108,4 @@ class Graph:
         if from_vertex not in self.from_edges:
             return False
 
-        return any(
-            edge.to_vertex is to_vertex
-            for edge in self.from_edges[from_vertex]
-        )
+        return any(edge.to_vertex is to_vertex for edge in self.from_edges[from_vertex])

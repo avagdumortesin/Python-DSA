@@ -1,4 +1,5 @@
 """Graph component classes used by the breadth-first search implementation."""
+
 from dataclasses import dataclass
 
 

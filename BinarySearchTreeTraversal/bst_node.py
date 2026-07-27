@@ -3,12 +3,13 @@ from __future__ import annotations
 
 class BSTNode:
     """Represents a node in a binary search tree."""
+
     def __init__(
-            self,
-            node_key: int,
-            left_child: BSTNode | None = None,
-            right_child: BSTNode | None = None,
-            parent_node: BSTNode | None = None,
+        self,
+        node_key: int,
+        left_child: BSTNode | None = None,
+        right_child: BSTNode | None = None,
+        parent_node: BSTNode | None = None,
     ) -> None:
         """Initialize a binary search tree node.
 
@@ -24,9 +25,9 @@ class BSTNode:
         self.parent = parent_node
 
     def replace_child(
-            self,
-            current_child: BSTNode,
-            new_child: BSTNode | None,
+        self,
+        current_child: BSTNode,
+        new_child: BSTNode | None,
     ) -> bool:
         """Replace one of the node's children with a new child node.
 

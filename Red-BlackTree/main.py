@@ -33,5 +33,6 @@ def main() -> None:
         else:
             print(f"Failed to remove key {key} (not found)")
 
+
 if __name__ == "__main__":
     main()

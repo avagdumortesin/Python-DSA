@@ -1,5 +1,6 @@
 from BinarySearchTreeTraversal.bst_node_visitor import BSTNodeVisitor
 
+
 class CountVisitor(BSTNodeVisitor):
     def __init__(self):
         self.node_count = 0

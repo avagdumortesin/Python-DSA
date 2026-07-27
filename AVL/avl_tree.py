@@ -4,6 +4,7 @@ from AVL.avl_print import AVLPrint
 
 class AVLTree:
     """A self-balancing binary search tree."""
+
     def __init__(self) -> None:
         """Initialize an empty AVL tree."""
         self.root: AVLNode | None = None
@@ -43,21 +44,21 @@ class AVLTree:
         if self.root is None:
             self.root = node
             return
-        
+
         current_node = self.root
-        
+
         while True:
             if node.key < current_node.key:
                 if current_node.left is None:
                     current_node.set_left(node)
                     break
-                
+
                 current_node = current_node.left
             else:
                 if current_node.right is None:
                     current_node.set_right(node)
                     break
-                
+
                 current_node = current_node.right
 
         current_node = node.parent
@@ -217,11 +218,7 @@ class AVLTree:
         """
         return self._search_recursive(self.root, key)
 
-    def _search_recursive(
-        self,
-        node: AVLNode | None,
-        key: int
-    ) -> AVLNode | None:
+    def _search_recursive(self, node: AVLNode | None, key: int) -> AVLNode | None:
         """Recursively search the subtree rooted at `node` for `key`.
 
         Args:

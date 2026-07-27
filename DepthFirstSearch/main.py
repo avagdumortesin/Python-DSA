@@ -8,10 +8,7 @@ from graph_components import Vertex
 def create_graph(vertex_labels: list[str]) -> tuple[Graph, dict[str, Vertex]]:
     """Create a graph and return its vertices indexed by label."""
     graph = Graph()
-    vertices = {
-        label: graph.add_vertex(label)
-        for label in vertex_labels
-    }
+    vertices = {label: graph.add_vertex(label) for label in vertex_labels}
     return graph, vertices
 
 
@@ -62,6 +59,7 @@ def main() -> None:
 
         graph.depth_first_search(start_vertex, visitor)
         print()
+
 
 if __name__ == "__main__":
     main()

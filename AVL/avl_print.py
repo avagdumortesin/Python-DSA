@@ -125,7 +125,7 @@ class AVLPrint:
                     left = left_lines[i]
 
                 right = absolute_indent + right_lines[i]
-                all_lines[2 + i] = left + right[len(left):]
+                all_lines[2 + i] = left + right[len(left) :]
 
         # Use the child positions to draw the connecting branches.
         left_index = all_lines[2].find("]")

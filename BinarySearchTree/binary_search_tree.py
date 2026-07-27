@@ -165,11 +165,7 @@ class BinarySearchTree:
         """
         return self._search_recursive(self.root, key)
 
-    def _search_recursive(
-            self,
-            node: BSTNode | None,
-            key: int
-    ) -> BSTNode | None:
+    def _search_recursive(self, node: BSTNode | None, key: int) -> BSTNode | None:
         """Recursively search the subtree rooted at `node` for `key`.
 
         Args:

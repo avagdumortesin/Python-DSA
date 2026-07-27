@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from enum import Enum, auto
 
 
@@ -43,8 +44,9 @@ class RBTNode:
         Returns:
             True if neither child is red; otherwise, False.
         """
-        return ((self.left is None or self.left.is_black()) and
-                (self.right is None or self.right.is_black()))
+        return (self.left is None or self.left.is_black()) and (
+            self.right is None or self.right.is_black()
+        )
 
     def count(self) -> int:
         """Count the number of nodes in the subtree rooted at this node.

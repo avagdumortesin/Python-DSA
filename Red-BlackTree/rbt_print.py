@@ -1,4 +1,4 @@
-from rbt_node import RBTNode, NodeColor
+from rbt_node import NodeColor, RBTNode
 
 
 class RBTPrint:
@@ -138,7 +138,7 @@ class RBTPrint:
                     left = left_lines[i]
 
                 right = absolute_indent + right_lines[i]
-                all_lines[2 + i] = left + right[len(left):]
+                all_lines[2 + i] = left + right[len(left) :]
 
         # Use the child positions to draw the connecting branches.
         left_index = all_lines[2].find("]")

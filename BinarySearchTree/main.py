@@ -1,6 +1,7 @@
 from BinarySearchTree.binary_search_tree import BinarySearchTree
 from BinarySearchTree.bst_print import BSTPrint
 
+
 def main() -> None:
     """Demonstrate insertion and removal in a binary search tree."""
     # The following values are inserted in this order to build the tree
@@ -24,6 +25,7 @@ def main() -> None:
             print(BSTPrint.tree_to_string(tree.root))
         else:
             print(f"Key {value} not found")
+
 
 if __name__ == "__main__":
     main()

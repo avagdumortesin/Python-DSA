@@ -3,8 +3,9 @@ from __future__ import annotations
 import heapq
 from collections import Counter
 
-from huffman_tree_node import HuffmanTreeNode
 from huffman_compressed_string import HuffmanCompressedString
+from huffman_tree_node import HuffmanTreeNode
+
 
 class Huffman:
     """Provides methods for Huffman encoding and decoding."""
@@ -13,11 +14,11 @@ class Huffman:
     def _build_frequency_table(input_string: str) -> dict[str, int]:
         """Build a frequency table for characters in a string.
 
-            Args:
-                input_string: The string to analyze.
+        Args:
+            input_string: The string to analyze.
 
-            Returns:
-                A dictionary mapping characters to their occurrence counts.
+        Returns:
+            A dictionary mapping characters to their occurrence counts.
         """
         return dict(Counter(input_string))
 
@@ -25,11 +26,11 @@ class Huffman:
     def build_tree(input_string: str) -> HuffmanTreeNode:
         """Build a Huffman tree from an input string.
 
-            Args:
-                input_string: The string to build the tree from.
+        Args:
+            input_string: The string to build the tree from.
 
-            Returns:
-                The root node of the Huffman tree.
+        Returns:
+            The root node of the Huffman tree.
         """
         frequency_table = Huffman._build_frequency_table(input_string)
 
@@ -54,16 +55,14 @@ class Huffman:
 
     @staticmethod
     def _build_codes(
-            node: HuffmanTreeNode,
-            prefix: str,
-            output: dict[str, str]
+        node: HuffmanTreeNode, prefix: str, output: dict[str, str]
     ) -> None:
         """Generate Huffman codes for each character.
 
-            Args:
-                node: Current node in the Huffman tree.
-                prefix: Current binary prefix.
-                output: Dictionary storing character-to-code mappings.
+        Args:
+            node: Current node in the Huffman tree.
+            prefix: Current binary prefix.
+            output: Dictionary storing character-to-code mappings.
         """
         if node.is_leaf():
             assert node.character is not None
@@ -80,12 +79,12 @@ class Huffman:
     def compress(input_string: str) -> HuffmanCompressedString | None:
         """Compress a string using Huffman encoding.
 
-            Args:
-                input_string: The string to compress.
+        Args:
+            input_string: The string to compress.
 
-            Returns:
-                A HuffmanCompressedString containing the encoded data and tree,
-                or None if the input is empty.
+        Returns:
+            A HuffmanCompressedString containing the encoded data and tree,
+            or None if the input is empty.
         """
         if not input_string:
             return None
@@ -100,25 +99,18 @@ class Huffman:
         # Build the compressed result
         compressed = "".join(codes[character] for character in input_string)
 
-        return HuffmanCompressedString(
-            input_string,
-            compressed,
-            root
-        )
+        return HuffmanCompressedString(input_string, compressed, root)
 
     @staticmethod
-    def decompress(
-            compressed_string: str,
-            tree_root: HuffmanTreeNode
-    ) -> str:
+    def decompress(compressed_string: str, tree_root: HuffmanTreeNode) -> str:
         """Decode a Huffman-compressed string.
 
-            Args:
-                compressed_string: The encoded binary string.
-                tree_root: Root of the Huffman tree.
+        Args:
+            compressed_string: The encoded binary string.
+            tree_root: Root of the Huffman tree.
 
-            Returns:
-                The original uncompressed string.
+        Returns:
+            The original uncompressed string.
         """
 
         if tree_root.is_leaf():
@@ -130,7 +122,7 @@ class Huffman:
 
         for bit in compressed_string:
             # Go left or right based on bit_char value
-            if bit == '0':
+            if bit == "0":
                 assert node.left_child is not None
                 node = node.left_child
             else:

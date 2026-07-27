@@ -103,7 +103,7 @@ class BSTPrint:
         indent_needed = max(
             0,
             len(left_lines[0]) + len(node_text) - right_lines[0].find("["),
-            )
+        )
 
         for i in range(0, min(len(left_lines), len(right_lines)), 2):
             # Compare only node rows and keep at least three spaces between the
@@ -125,7 +125,7 @@ class BSTPrint:
                     left = left_lines[i]
 
                 right = absolute_indent + right_lines[i]
-                all_lines[2 + i] = left + right[len(left):]
+                all_lines[2 + i] = left + right[len(left) :]
 
         # Use the child positions to draw the connecting branches.
         left_index = all_lines[2].find("]")

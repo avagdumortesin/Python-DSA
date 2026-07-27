@@ -1,6 +1,8 @@
 """Provides a directed graph with depth-first traversal."""
+
 from dfs_visitors import VertexVisitor
 from graph_components import Edge, Vertex
+
 
 class Graph:
     """Represents a weighted directed graph."""
@@ -67,19 +69,15 @@ class Graph:
 
     def get_edges(self) -> set[Edge]:
         """Return all distinct edges in the graph."""
-        return {
-            edge
-            for edges in self.from_edges.values()
-            for edge in edges
-        }
-
-    def get_edges_list(self) -> list[Edge]:
-        """Return all distinct edges as a list."""
-        return list(self.get_edges())
+        return {edge for edges in self.from_edges.values() for edge in edges}
 
     def get_edges_from(self, from_vertex: Vertex) -> list[Edge]:
         """Return the edges originating from a vertex."""
         return self.from_edges[from_vertex]
+
+    def get_edges_list(self) -> list[Edge]:
+        """Return all distinct edges as a list."""
+        return list(self.get_edges())
 
     def get_edges_to(self, to_vertex: Vertex) -> list[Edge]:
         """Return the edges terminating at a vertex."""
@@ -105,7 +103,4 @@ class Graph:
         if from_vertex not in self.from_edges:
             return False
 
-        return any(
-            edge.to_vertex is to_vertex
-            for edge in self.from_edges[from_vertex]
-        )
+        return any(edge.to_vertex is to_vertex for edge in self.from_edges[from_vertex])

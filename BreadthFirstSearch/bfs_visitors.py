@@ -10,7 +10,6 @@ class VertexVisitor(ABC):
     @abstractmethod
     def visit(self, vertex: Vertex) -> None:
         """Process a visited vertex."""
-        pass
 
 
 @dataclass(slots=True)

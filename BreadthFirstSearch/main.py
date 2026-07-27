@@ -36,17 +36,14 @@ def main() -> None:
         return
 
     vertex_distances: dict[Vertex, int] = {}
-    people_graph.breadth_first_search(
-        start_vertex,
-        visitor,
-        vertex_distances
-    )
+    people_graph.breadth_first_search(start_vertex, visitor, vertex_distances)
 
     print("Breadth-first search traversal")
     print(f"Start vertex: {start_vertex.label}")
 
     for vertex in visitor.visited_vertices:
         print(f"{vertex.label}: {vertex_distances[vertex]}")
+
 
 if __name__ == "__main__":
     main()

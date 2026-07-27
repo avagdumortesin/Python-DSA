@@ -29,9 +29,9 @@ class AVLNode:
         return left_height - right_height
 
     def replace_child(
-            self,
-            current_child: AVLNode,
-            new_child: AVLNode | None,
+        self,
+        current_child: AVLNode,
+        new_child: AVLNode | None,
     ) -> bool:
         """Replace one of this node's children.
 
