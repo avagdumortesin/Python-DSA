@@ -28,6 +28,9 @@ Current implementations include:
 ### Graphs
 
 - Breadth-First Search (BFS)
+- Depth-First Search (DFS)
+- Dijkstra's Shortest Path Algorithm
+- Bellman-Ford Shortest Path Algorithm
 
 ### Additional algorithms
 

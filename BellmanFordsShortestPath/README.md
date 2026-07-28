@@ -1,15 +1,17 @@
-# Dijkstra's Shortest Path Algorithm
+# Bellman-Ford Shortest Path Algorithm
 
 ## Overview
 
-This project demonstrates an implementation of **Dijkstra's Shortest Path Algorithm** in Python. The implementation is based on the example presented in the WGU zyBooks *Data Structures and Algorithms II* textbook but has been refactored using modern Python features while preserving the original algorithm.
+This project demonstrates an implementation of the **Bellman-Ford Shortest Path Algorithm** in Python. The implementation is based on the example presented in the WGU zyBooks *Data Structures and Algorithms II* textbook but has been refactored using modern Python features while preserving the original algorithm.
 
-Dijkstra's algorithm computes the minimum total path weight from a starting vertex to every reachable vertex in a weighted graph with non-negative edge weights. This implementation records predecessor vertices during traversal, allowing the shortest path to any reachable destination to be reconstructed after the algorithm completes.
+Bellman-Ford computes the minimum total path weight from a starting vertex to every reachable vertex in a weighted graph, even when negative edge weights are present. Unlike Dijkstra's algorithm, Bellman-Ford can also detect reachable negative-weight cycles, which indicate that no shortest path exists.
 
 ## Features
 
 - Single-source shortest path computation
 - Support for weighted directed and undirected graphs
+- Support for negative edge weights
+- Detection of reachable negative-weight cycles
 - Automatic shortest-path reconstruction
 - Dataclass-based graph components
 - Fully type-annotated implementation
@@ -40,26 +42,25 @@ Example output:
 ```text
 A to A: A (total weight: 0)
 
-A to B: A -> B (total weight: 8)
+A to B: A -> B (total weight: 1)
 
-A to C: A -> D -> C (total weight: 4)
+A to C: A -> C (total weight: 2)
 
-A to D: A -> D (total weight: 3)
+A to D: A -> B -> D (total weight: 4)
 
-A to E: A -> D -> C -> E (total weight: 6)
+A to E: A -> B -> E (total weight: 3)
 
-A to F: A -> D -> C -> E -> F (total weight: 10)
-
-A to G: A -> D -> C -> E -> F -> G (total weight: 11)
+A to F: A -> B -> E -> F (total weight: 6)
 
 ```
 
 ## Concepts Demonstrated
 
-- Dijkstra's shortest path algorithm
-- Greedy algorithms
+- Bellman-Ford shortest path algorithm
 - Weighted graph representations
 - Directed and undirected graphs
+- Negative edge weights
+- Negative-weight cycle detection
 - Path reconstruction using predecessor links
 - Object-oriented design
 - Python dataclasses
@@ -72,7 +73,8 @@ A to G: A -> D -> C -> E -> F -> G (total weight: 11)
 - Preserved identity-based graph semantics using `eq=False`.
 - Added `Vertex.__str__()` to encapsulate vertex display.
 - Refactored vertex initialization using a dictionary comprehension.
-- Eliminated duplicate object creation by deriving the unvisited list from the dictionary values.
+- Added an early-exit optimization when no edge relaxations occur during an iteration.
+- Simplified edge relaxation by iterating directly over all graph edges.
 - Added complete type annotations throughout the project.
 - Added module, class, and method docstrings.
 - Improved readability through descriptive variable names.
@@ -82,7 +84,7 @@ A to G: A -> D -> C -> E -> F -> G (total weight: 11)
 
 ## Acknowledgements
 
-This project is based on the Dijkstra's shortest path algorithm presented in:
+This project is based on the Bellman-Ford shortest path algorithm presented in:
 
 > Lysecky, R., & Vahid, F. (2018, June). *C950: Data Structures and Algorithms II*. zyBooks.
 
