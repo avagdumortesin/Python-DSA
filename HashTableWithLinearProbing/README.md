@@ -39,47 +39,35 @@ python main.py
 Example output (bucket assignments will vary because Python randomizes string hashes between interpreter sessions):
 
 ```text
-Items: 
-LAX: Los Angeles
-SFO: San Francisco
-IAH: Houston
-ORD: Chicago
-NRT: Tokyo
-JFK: New York
-IAD: Washington
-DAL: Dallas
-YVR: Vancouver
-LHR: London
-
 Buckets:
-0: LAX: Los Angeles
-1: (empty)
-2: (empty)
-3: SFO: San Francisco
-4: IAH: Houston
-5: ORD: Chicago --> NRT: Tokyo
-6: JFK: New York
+0: EMPTY_SINCE_START
+1: ORD: Chicago
+2: LAX: Los Angeles
+3: IAH: Houston
+4: DAL: Dallas
+5: JFK: New York
+6: SFO: San Francisco
 7: IAD: Washington
-8: DAL: Dallas --> YVR: Vancouver
-9: LHR: London
-10: (empty)
+8: LHR: London
+9: NRT: Tokyo
+10: YVR: Vancouver
 
 Removing "LAX"
 
 Removing "ORD"
 
 Buckets after removals:
-0: (empty)
-1: (empty)
-2: (empty)
-3: SFO: San Francisco
-4: IAH: Houston
-5: NRT: Tokyo
-6: JFK: New York
+0: EMPTY_SINCE_START
+1: EMPTY_AFTER_REMOVAL
+2: EMPTY_AFTER_REMOVAL
+3: IAH: Houston
+4: DAL: Dallas
+5: JFK: New York
+6: SFO: San Francisco
 7: IAD: Washington
-8: DAL: Dallas --> YVR: Vancouver
-9: LHR: London
-10: (empty)
+8: LHR: London
+9: NRT: Tokyo
+10: YVR: Vancouver
 ```
 
 ## Concepts Demonstrated
